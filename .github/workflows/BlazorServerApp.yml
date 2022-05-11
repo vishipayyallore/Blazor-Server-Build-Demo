@@ -20,7 +20,16 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+    - name: Current Working Directory
+      run: echo ${{ github.workspace }}
     - name: Restore dependencies
-      # run: echo ${{ github.workspace }}
       run: dotnet restore 
-      # HelloWorldBlazorServer/HelloWorldBlazorServer/HelloWorldBlazorServer.csproj
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - name: dotnet publish
+      run: dotnet publish -c Release -o ${{ github.workspace }}/publish
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Blazor-Server-Artifacts
+        path: ${{ github.workspace }}/publish/ # or path/to/artifact      
+      
