@@ -18,8 +18,4 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ./HelloWorldBlazorServer/HelloWorldBlazorServer.csproj
-    - name: Build
-      run: dotnet build --no-restore --configuration Release ./HelloWorldBlazorServer/HelloWorldBlazorServer.csproj
-    - name: dotnet publish
-      run:  dotnet publish ./HelloWorldBlazorServer/HelloWorldBlazorServer.csproj -c Release -o ${{env.DOTNET_ROOT}}/publish 
+      run: echo ${{ github.workspace }}
